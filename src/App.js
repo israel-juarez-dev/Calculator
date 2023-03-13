@@ -2,24 +2,22 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-
+  // display is where the numbers and operators will show, on line 45 i have the div where display shows
   const [display, setDisplay] = useState([])
 
   const createDigits = () => {
     const digits = [];
-    for (let i = 1; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
       digits.push(
         <button onClick={() => addNumber(i)} key={i}>{i}</button>
       )
     }
     return digits;
   }
-
   const addNumber = (i) => {
     setDisplay(display + i)
-    console.log(i)
+    console.log()
   }
-
   const addAddition = () => {
     setDisplay(display + "+")
   }
@@ -31,6 +29,14 @@ function App() {
   }
   const addDivision = () => {
     setDisplay(display + "/")
+  }
+  const addDecimal = () => {
+    setDisplay(display + ".")
+  }
+
+  // This will solve the whole equation and simplyify it
+  const solveEquation = () => {
+
   }
 
   return (
@@ -46,12 +52,14 @@ function App() {
         </div>
         <div>
           {createDigits()}
-          <button>0</button>
-          <button>.</button>
-          <button>=</button>
+          <button onClick={addDecimal}>.</button>
+          <button onClick={solveEquation}>=</button>
         </div>
     </div>
   );
 }
 
 export default App;
+
+// I might make it so that the calculator clears the moment you click another button on the calculator after an equation has been solved
+// another thing i may do though it make it so the number from a solve equation stays and can be used for another equation. if this is done instead ill just make a clear calculator button
