@@ -1,46 +1,55 @@
 import './App.css';
-import {useState} from "react";
+import { useState } from 'react';
 
 function App() {
 
-  const [value1, setValue1] = useState()
-  const [value2, setValue2] = useState()
-  const [result, setResult] = useState()
+  const [display, setDisplay] = useState([])
 
-  const changeInput1 = (e) => {
-    setValue1(parseInt(e.target.value))
+  const createDigits = () => {
+    const digits = [];
+    for (let i = 1; i < 10; i++) {
+      digits.push(
+        <button onClick={() => addNumber(i)} key={i}>{i}</button>
+      )
+    }
+    return digits;
   }
-  const changeInput2 = (e) => {
-    setValue2(parseInt(e.target.value))
+
+  const addNumber = (i) => {
+    setDisplay(display + i)
+    console.log(i)
   }
-  const addNumbers = () => {
-    setResult(value1 + value2)
+
+  const addAddition = () => {
+    setDisplay(display + "+")
   }
-  const subtractNumbers = () => {
-    setResult(value1 - value2)
+  const addSubtraction = () => {
+    setDisplay(display + "-")
   }
-  const multiplyNumbers = () => {
-    setResult(value1 * value2)
+  const addMultiplication = () => {
+    setDisplay(display + "*")
   }
-  const divideNumbers = () => {
-    setResult(value1 / value2)
-  }
-  const clearNumbers = () => {
-    setValue1("")
-    setValue2("")
-    setResult("")
+  const addDivision = () => {
+    setDisplay(display + "/")
   }
 
   return (
     <div className="App">
-      <input onChange={changeInput1} value={value1}></input>
-      <input onChange={changeInput2} value={value2}></input>
-      <button onClick={addNumbers}>Add</button>
-      <button onClick={subtractNumbers}>Subtract</button>
-      <button onClick={multiplyNumbers}>Multiply</button>
-      <button onClick={divideNumbers}>Divide</button>
-      <button onClick={clearNumbers}>Clear Calculator</button>
-      <h1>{result}</h1>
+        <div>
+          {display}
+        </div>
+        <div>
+          <button onClick={addAddition}>+</button>
+          <button onClick={addSubtraction}>-</button>
+          <button onClick={addMultiplication}>*</button>
+          <button onClick={addDivision}>÷</button>
+        </div>
+        <div>
+          {createDigits()}
+          <button>0</button>
+          <button>.</button>
+          <button>=</button>
+        </div>
     </div>
   );
 }
