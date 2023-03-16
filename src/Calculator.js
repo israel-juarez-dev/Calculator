@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 export default function Calculator() {
       // display is where the numbers and operators will show, on line 45 i have the div where display shows
   const [display, setDisplay] = useState([]);
-
+//sad;lkfjlsdkjflkds
   const createDigits = () => {
     const digits = [];
     for (let i = 0; i < 10; i++) {
