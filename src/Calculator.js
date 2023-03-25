@@ -1,59 +1,55 @@
 import React, {useState} from 'react'
+import { Button } from "antd";
 
 export default function Calculator() {
-      // display is where the numbers and operators will show, on line 45 i have the div where display shows
-  const [display, setDisplay] = useState([]);
-//sad;lkfjlsdkjflkds
+  const [display, setDisplay] = useState("");
+
   const createDigits = () => {
     const digits = [];
     for (let i = 0; i < 10; i++) {
       digits.push(
-        <button onClick={() => addNumber(i)} key={i}>
+        <Button type="dashed" onClick={handleClick} name={i} value={i}>
           {i}
-        </button>
+        </Button>
       );
     }
     return digits;
   };
-  const addNumber = (i) => {
-    setDisplay(display + i);
-    console.log();
-  };
-  const addAddition = () => {
-    setDisplay(display + "+");
-  };
-  const addSubtraction = () => {
-    setDisplay(display + "-");
-  };
-  const addMultiplication = () => {
-    setDisplay(display + "*");
-  };
-  const addDivision = () => {
-    setDisplay(display + "/");
-  };
-  const addDecimal = () => {
-    setDisplay(display + ".");
-  };
 
-  // This will solve the whole equation and simplyify it
-  const solveEquation = () => {};
+  const handleClick = (e) => {
+    setDisplay(display.concat(e.target.name))
+  }
+
+  const calculate = () => {
+    setDisplay(eval(display).toString())
+  } 
+
+  const del = () => {
+    setDisplay(display.slice(0, -1))
+  }
+
+  const clear = () => {
+    setDisplay("")
+  }
 
   return (
-    
     <div className="App">
-    <div>{display}</div>
-    <div>
-      <button onClick={addAddition}>+</button>
-      <button onClick={addSubtraction}>-</button>
-      <button onClick={addMultiplication}>*</button>
-      <button onClick={addDivision}>÷</button>
+      <div>{display}</div>
+      <div>
+        <Button type="dashed" name="+" onClick={handleClick}>+</Button>
+        <Button type="dashed" name="-" onClick={handleClick}>-</Button>
+        <Button type="dashed" name="*" onClick={handleClick}>*</Button>
+        <Button type="dashed" name="/" onClick={handleClick}>÷</Button>
+      </div>
+      <div>
+        {createDigits()}
+      </div>
+      <div>
+        <Button type="dashed" name="." onClick={handleClick}>.</Button>
+        <Button type="dashed" onClick={calculate}>=</Button>
+        <Button type="dashed" onClick={del}>del</Button>
+        <Button type="dashed" onClick={clear}>c</Button>
+      </div>
     </div>
-    <div>
-      {createDigits()}
-      <button onClick={addDecimal}>.</button>
-      <button onClick={solveEquation}>=</button>
-    </div>
-  </div>
-    
   )
 }

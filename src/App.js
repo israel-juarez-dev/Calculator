@@ -1,18 +1,10 @@
 import "./App.css";
-import { useState } from "react";
-import { Layout, Space, Avatar, Card } from "antd";
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import AntLayout from "./AntLayout";
-const { Header, Footer, Sider, Content } = Layout;
-
-const { Meta } = Card;
 
 function App() {
-  
-return (
-  <AntLayout/>
-)
-
+  return (
+    <AntLayout/>
+  )
 }
 
 export default App;
